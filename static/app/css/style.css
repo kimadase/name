@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Bubbles&display=swap');
+*{font-family: "Rubik Bubbles", serif;}
+
 .my-header {
     border-bottom: 1px solid black;
     margin-bottom: 60px;
@@ -27,12 +30,12 @@
 }
 
 body {
-        background-image: url(../../../media/flagbw.jpeg);
+        background-image: url(../../../media/flagbg.png);
         background-repeat: no-repeat;
         background-size: cover;
         }
 
-.main {
+.main-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -41,8 +44,21 @@ body {
 
 #akinator-img-wrapper {
     display: none;
+    max-height: 600px;
 }
 
 #ak-image {
-    height: 25%;
+    height: 700px;
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }

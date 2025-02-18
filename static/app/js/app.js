@@ -15,9 +15,9 @@ function getCookie(name) {
 }
 
 const akinatorImages = [
-    '../../../media/IMG_0469.PNG',
-    '../../../media/IMG_0470.PNG',
-    '../../../media/IMG_0471.PNG'
+    '../../../media/happy.png',
+    '../../../media/frowning.png',
+    '../../../media/neutral.png'
 ];
 
 let currentImageIndex = 0;
@@ -108,7 +108,10 @@ function displayResult(germ_glavkom) {
     });
     fetch(request).then((response) => {
         response.json().then((data) => {
+            let description = document.createElement('div');
+            description.innerHTML = 'Hello world!';
             let question = document.getElementById('question');
+            question.appendChild(description);
             question.innerHTML = data.question;
             document.getElementById('choices').innerHTML = '';
             document.getElementById('play-again').style.display = 'block';
