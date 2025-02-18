@@ -1,0 +1,45 @@
+services:
+  db:
+    image: postgres:bookworm
+    container_name: postgres
+    environment:
+      - POSTGRES_DB=${DATABASE_NAME}
+      - POSTGRES_USER=${DATABASE_USER}
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
+    env_file:
+      - ./.env
+    ports:
+      - '5432:5432'
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+
+  web:
+    build: .
+    container_name: django-akinator-app
+    ports:
+      - '8000:8000'
+    environment:
+      - DJANGO_DEBUG=${DJANGO_DEBUG}
+      - DATABASE_NAME=${DATABASE_NAME}
+      - DATABASE_USER=${DATABASE_USER}
+      - DATABASE_PASSWORD=${DATABASE_PASSWORD}
+      - DATABASE_HOST=${DATABASE_HOST}
+      - DATABASE_PORT=${DATABASE_PORT}
+    env_file:
+      - ./.env
+    depends_on:
+      - db
+
+  caddy:
+    image: caddy:alpine
+    container_name: django-akinator-caddy
+    ports:
+      - 80:80
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - ./staticfiles:/srv/static
+    depends_on:
+      - web
+
+volumes:
+  pg_data:
