@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>Акинатор</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app/css/style.css' %}">
+</head>
+<body class="container">
+{% include 'app/templates/header.html' %}
+<main class="main-container">
+    <h1 class="my-h1">Акинатор-3000</h1>
+    <div id="intro">
+        <button id="start-button" class="link-btn">Играть</button>
+    </div>
+    <div class="flex">
+        <div id="akinator-img-wrapper">
+            <img alt="soldat" id="ak-image">
+        </div>
+        <div id="main">
+            <div>
+                <p id="question"></p>
+            </div>
+            <a href="{% url 'akinator:game' %}" style="display: none;" id="play-again">Играть снова</a>
+            <div id="choices"></div>
+        </div>
+    </div>
+</main>
+<script type="text/javascript" src="{% static 'app/js/app.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+.my-header {
+    border-bottom: 1px solid black;
+    margin-bottom: 60px;
+}
+
+.my-h1 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.link-btn {
+    text-decoration: none;
+    color: black;
+    padding: 6px 12px;
+    border: 1px solid black;
+    border-radius: 8px;
+    background-color: white;
+    -webkit-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+}
+
+.link-btn:hover {
+    background-color: red;
+    transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+}
+
+body {
+        background-image: url(../../../media/flagbw.jpeg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        }
+
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#akinator-img-wrapper {
+    display: none;
+}
+
+#ak-image {
+    height: 25%;
+}
