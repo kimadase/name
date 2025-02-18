@@ -1,5 +1,9 @@
 asgiref==3.8.1
 Django==5.1.1
+Jinja2==3.1.5
+MarkupSafe==3.0.2
 psycopg2-binary==2.9.10
+PyYAML==6.0.2
 render==1.0.0
 sqlparse==0.5.1
+typing_extensions==4.12.2
