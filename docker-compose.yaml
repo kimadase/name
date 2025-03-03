@@ -1,45 +1,28 @@
+version: "3.9"
 services:
-  db:
-    image: postgres:bookworm
-    container_name: postgres
+  postgres:
+    image: postgres:14.8-alpine3.18
     environment:
-      - POSTGRES_DB=${DATABASE_NAME}
-      - POSTGRES_USER=${DATABASE_USER}
-      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
-    env_file:
-      - ./.env
-    ports:
-      - '5432:5432'
+      POSTGRES_DB: "postgres"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+      PGDATA: "/var/lib/postgresql/data/pgdata"
     volumes:
-      - pg_data:/var/lib/postgresql/data
-
-  web:
-    build: .
-    container_name: django-akinator-app
+      - ../2. Init Database:/docker-entrypoint-initdb.d
+      - akinator-data:/var/lib/postgresql/data
     ports:
-      - '8000:8000'
-    environment:
-      - DJANGO_DEBUG=${DJANGO_DEBUG}
-      - DATABASE_NAME=${DATABASE_NAME}
-      - DATABASE_USER=${DATABASE_USER}
-      - DATABASE_PASSWORD=${DATABASE_PASSWORD}
-      - DATABASE_HOST=${DATABASE_HOST}
-      - DATABASE_PORT=${DATABASE_PORT}
-    env_file:
-      - ./.env
-    depends_on:
-      - db
-
-  caddy:
-    image: caddy:alpine
-    container_name: django-akinator-caddy
-    ports:
-      - 80:80
-    volumes:
-      - ./Caddyfile:/etc/caddy/Caddyfile
-      - ./staticfiles:/srv/static
-    depends_on:
-      - web
+      - "7777:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
 
 volumes:
-  pg_data:
+  akinator-data:
