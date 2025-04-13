@@ -17,7 +17,8 @@ function getCookie(name) {
 const akinatorImages = [
     '../../../media/happy.png',
     '../../../media/frowning.png',
-    '../../../media/neutral.png'
+    '../../../media/neutral.png',
+    '../../../media/thinking.png'
 ];
 
 let currentImageIndex = 0;
